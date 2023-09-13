@@ -55,6 +55,40 @@
 	</dependency>
 
 
+	<!--Dependencias para descarga de archivos csv, xls, pdf y xml-->
+	
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml-schemas -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml-schemas</artifactId>
+	    <version>3.17</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.xhtmlrenderer/flying-saucer-pdf -->
+	<dependency>
+	    <groupId>org.xhtmlrenderer</groupId>
+	    <artifactId>flying-saucer-pdf</artifactId>
+	    <version>9.2.2</version>
+	</dependency>
+
+	<!-- https://mvnrepository.com/artifact/org.apache.poi/poi-ooxml -->
+	<dependency>
+	    <groupId>org.apache.poi</groupId>
+	    <artifactId>poi-ooxml</artifactId>
+	    <version>3.17</version>
+	</dependency>
+
+	<!--Fin dependencias para descarga de archivos -->
+	
+	<!-- https://mvnrepository.com/artifact/com.lowagie/itext -->
+	<dependency>
+	    <groupId>com.lowagie</groupId>
+	    <artifactId>itext</artifactId>
+	    <version>4.2.2</version>
+	    <type>pom</type>
+	</dependency>
+
+
   </dependencies>
 
   <build>

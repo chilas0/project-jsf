@@ -8,42 +8,77 @@
       
 	<h:head>
 		<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
+		<meta name="viewport" content="width=device-width, user-scalable=no"></meta>
+		
 	</h:head>
 	
 	<h:body>
-		<h:dataTable id="tblEmployers" var="employer" value="#{principalController.empleados}" headerClass="headerTable" 
-		rowClasses="rowTable rowTableLine">
-			<h:column>
-				<f:facet name="header">Name</f:facet>
-				<h:outputText value="#{employer.name}"></h:outputText>
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Firstname</f:facet>
-				<h:outputText value="#{employer.firstname}"></h:outputText>
+		<p:outputLabel value="Bienvenido #{sessionController.userDTO.user} a la pantalla principal"></p:outputLabel>
+		
+		<h:form>
+			<p:commandButton value="Cerrar Sesión" action="#{sessionClosedController.cerrarSession}"></p:commandButton>
+			<p:dataTable id="tblEmployers" var="employer" value="#{principalController.empleados}" headerClass="headerTable" paginator="true"
+				rows="10" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                currentPageReportTemplate="{startRecord}-{endRecord} de {totalRecords} registros"
+                rowsPerPageTemplate="5,10,{ShowAll|'All'}" emptyMessage="No se encontraron registros" paginatorPosition="bottom"
+                filteredValue="#{principalController.empleadosFiltrados}" reflow="true">
+                     
+                <f:facet name="{Exporters}">
+                	
+                	<div style="float:right; padding-top: 5px;">
+	                	
+	                	
+                		<h:commandLink>
+                			<p:graphicImage name="imgs/excel.png" width="24"/>
+                			<p:dataExporter type="xls" target="tblEmployers" fileName="ReporteEmpleados"/>
+                		</h:commandLink>
+                		
+                		<h:commandLink>
+                			<p:graphicImage name="imgs/xlsx.png" width="24"/>
+                			<p:dataExporter type="xlsxstream" target="tblEmployers" fileName="ReporteEmpleados"/>
+                		</h:commandLink>
+                		
+                		<h:commandLink>
+                			<p:graphicImage name="imgs/pdf.png" width="24"/>
+                			<p:dataExporter type="pdf" target="tblEmployers" fileName="ReporteEmpleados"/>
+                		</h:commandLink>
+                		
+                		<h:commandLink>
+                			<p:graphicImage name="imgs/csv.png" width="24"/>
+                			<p:dataExporter type="csv" target="tblEmployers" fileName="ReporteEmpleados"/>
+                		</h:commandLink>
+                		
+                		<h:commandLink>
+                			<p:graphicImage name="imgs/xml.png" width="24"/>
+                			<p:dataExporter type="xml" target="tblEmployers" fileName="ReporteEmpleados"/>
+                		</h:commandLink>
+                		
+                	</div>
+                
+                </f:facet>
+				<p:column headerText="Name" filterBy="#{employer.name}" filterMatchMode="contains" sortBy="#{employer.name}">
+					<h:outputText value="#{employer.name}"></h:outputText>
+				</p:column>
 				
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Secondname</f:facet>
-				<h:outputText value="#{employer.secondName}"></h:outputText>
+				<p:column headerText="Firstname" filterBy="#{employer.firstname}" filterMatchMode="contains" sortBy="#{employer.firstname}">
+					<h:outputText value="#{employer.firstname}"></h:outputText>
+				</p:column>
 				
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Position</f:facet>
-				<h:outputText value="#{employer.position}"></h:outputText>
+				<p:column headerText="Secondname" filterBy="#{employer.secondName}" filterMatchMode="contains" sortBy="#{employer.secondName}">
+					<h:outputText value="#{employer.secondName}"></h:outputText>
+				</p:column>
 				
-			</h:column>
-			
-			<h:column>
-				<f:facet name="header">Status</f:facet>
-				<h:outputText value="HABILITADO" rendered="#{employer.status}"></h:outputText>
-				<h:outputText value="INHABILITADO" rendered="#{!employer.status}"></h:outputText>
+				<p:column headerText="Position" filterBy="#{employer.position}" filterMatchMode="contains" sortBy="#{employer.position}">
+					<h:outputText value="#{employer.position}"></h:outputText>
+				</p:column>
 				
-			</h:column>
+				<p:column headerText="Status" >
+					<h:outputText value="HABILITADO" rendered="#{employer.status}"></h:outputText>
+					<h:outputText value="INHABILITADO" rendered="#{!employer.status}"></h:outputText>
+				</p:column>
 			
+			</p:dataTable>
 			
-		</h:dataTable>
+		</h:form>
 	</h:body>
 </html>

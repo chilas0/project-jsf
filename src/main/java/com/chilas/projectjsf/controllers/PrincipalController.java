@@ -27,6 +27,12 @@ public class PrincipalController {
 	 */
 	private List<Employer> empleados;
 	
+	
+	/**
+	 * Lista de empleados filtrados
+	 */
+	private List<Employer> empleadosFiltrados;
+	
 	/**
 	 * Servicio con los metodos que realizan la logica de negocio de empleados.
 	 */
@@ -62,5 +68,19 @@ public class PrincipalController {
 	 */
 	public void setEmpleados(List<Employer> empleados) {
 		this.empleados = empleados;
+	}
+
+	/**
+	 * @return the empleadosFiltrados
+	 */
+	public List<Employer> getEmpleadosFiltrados() {
+		return empleadosFiltrados;
+	}
+
+	/**
+	 * @param empleadosFiltrados the empleadosFiltrados to set
+	 */
+	public void setEmpleadosFiltrados(List<Employer> empleadosFiltrados) {
+		this.empleadosFiltrados = empleadosFiltrados;
 	}
 }
